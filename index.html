@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Work Submission and Voting Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Creative Gallery</p>
+      <h1>User Work Submission and Voting Page</h1>
+      <p class="header-text">Users can upload their creative works, write a short description, and vote for their favorite submissions. This page is suitable for class projects, campus contests, campaign activities, and portfolio showcases.</p>
+    </div>
+    <button class="primary-btn" onclick="document.getElementById('submit-section').scrollIntoView({behavior:'smooth'})">
+      Submit Work
+    </button>
+  </header>
+
+  <main>
+    <section class="stats-grid" aria-label="Page statistics">
+      <div class="stat-card">
+        <span id="totalWorks">0</span>
+        <p>Submitted Works</p>
+      </div>
+      <div class="stat-card">
+        <span id="totalVotes">0</span>
+        <p>Total Votes</p>
+      </div>
+      <div class="stat-card">
+        <span id="topWork">None</span>
+        <p>Current Top Work</p>
+      </div>
+    </section>
+
+    <section class="panel" id="submit-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Submit</p>
+          <h2>Submit Your Work</h2>
+        </div>
+        <p>Fill in the basic information and upload an image. Your work will appear in the gallery below.</p>
+      </div>
+
+      <form id="workForm" class="work-form">
+        <div class="form-grid">
+          <label>
+            Work Title
+            <input type="text" id="title" placeholder="Example: Spring Poster Design" required maxlength="40" />
+          </label>
+
+          <label>
+            Creator Name
+            <input type="text" id="author" placeholder="Example: Linya" required maxlength="30" />
+          </label>
+
+          <label>
+            Category
+            <select id="category" required>
+              <option value="Graphic Design">Graphic Design</option>
+              <option value="Photography">Photography</option>
+              <option value="Illustration">Illustration</option>
+              <option value="Video Concept">Video Concept</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+
+          <label>
+            Upload Image
+            <input type="file" id="image" accept="image/*" />
+          </label>
+        </div>
+
+        <label>
+          Work Description
+          <textarea id="description" placeholder="Briefly introduce the concept, inspiration, or key idea of your work." required maxlength="180"></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="primary-btn">Submit Work</button>
+          <button type="button" class="ghost-btn" id="resetDemo">Reset Demo Data</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="toolbar">
+      <div>
+        <p class="eyebrow">Gallery</p>
+        <h2>Work Gallery and Voting</h2>
+      </div>
+
+      <div class="tools">
+        <input type="search" id="searchInput" placeholder="Search title, creator, or description" />
+        <select id="filterCategory">
+          <option value="All">All Categories</option>
+          <option value="Graphic Design">Graphic Design</option>
+          <option value="Photography">Photography</option>
+          <option value="Illustration">Illustration</option>
+          <option value="Video Concept">Video Concept</option>
+          <option value="Other">Other</option>
+        </select>
+        <select id="sortBy">
+          <option value="newest">Newest First</option>
+          <option value="votes">Most Votes</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery" aria-live="polite"></section>
+
+    <section class="panel ranking-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Ranking</p>
+          <h2>Live Ranking</h2>
+        </div>
+        <p>The ranking is automatically sorted based on the voting data saved in this browser.</p>
+      </div>
+      <ol id="rankingList" class="ranking-list"></ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>Prototype page · Data is saved in localStorage · This template can be further developed as a front-end project</p>
+  </footer>
+
+  <template id="workCardTemplate">
+    <article class="work-card">
+      <div class="image-wrap">
+        <img src="" alt="" />
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category-badge"></span>
+          <span class="date-text"></span>
+        </div>
+        <h3></h3>
+        <p class="author"></p>
+        <p class="desc"></p>
+        <div class="vote-row">
+          <strong class="vote-count"></strong>
+          <button class="vote-btn">Vote</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
